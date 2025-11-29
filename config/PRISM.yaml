@@ -1,0 +1,71 @@
+batch_size: 4
+num_workers: 4
+use_gpu: True
+checkpoints_dir: runs/ 
+last_epoch: last
+num_epochs: 50
+print_step: 1
+metrics_step: 1
+window_size: 100 
+visualize_step: 100 
+save_step: 1 
+visual_window: [0.0, 1.0] 
+dataset:
+  dataset_type: spineweb
+  deep_lesion:
+    dataset_dir: /path/to/deepleion/train
+    blacklist: /path/to/deepleion/blacklist.json
+    normalize: True
+    partial_holdout: 0.5 
+    random_mask: True 
+    random_flip: True
+    load_mask: False
+  spineweb:
+    a_dir: /path/to/spineweb/train/artifact
+    b_dir: /path/to/spineweb/train/no_artifact
+    random_flip: True
+    a_range: [-1000.0, 2000.0]
+    b_range: [-1000.0, 2000.0]
+  nature_image:
+    a_dir: /path/to/nature_image/train/artifact
+    b_dir: /path/to/nature_image/train/no_artifact
+    random_flip: True
+    load_size: 384
+    crop_size: 256
+model:
+  g_type: PRISM
+  d_type: nlayer
+  PRISM:
+    input_ch: 1
+    base_ch: 64
+    num_down: 2 
+    num_residual: 4 
+    num_sides: 3 
+    down_norm: instance
+    res_norm: instance
+    up_norm: layer
+    fuse: True 
+    shared_decoder: False 
+  nlayer:
+    input_nc: 1
+    ndf: 64
+    n_layers: 2
+    norm_layer: instance
+learn:
+  lr: 1.e-4
+  beta1: 0.5 
+  beta2: 0.999 
+  weight_decay: 1.e-5
+  gamma: 0.5 
+  step_size: 1.e+5 
+loss:
+  gt_art: True 
+  wgts: 
+    ll: [l1, 0.0] 
+    hh: [l1, 10.0] 
+    lh: [l1, 0.0] 
+    lhl: [l1, 10.0] 
+    hlh: [l1, 20.0] 
+    noise: [l1, 10.0] 
+    gh: [gh, 2.0] 
+    gl: [gl, 2.0] 

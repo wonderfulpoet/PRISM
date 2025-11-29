@@ -1,0 +1,41 @@
+spineweb:
+  train:
+    batch_size: 8
+    dataset_type: spineweb
+  test:
+    batch_size: 32
+    dataset_type: spineweb
+    a_dir: /path/to/spine_mar/test/artifact
+    b_dir: /path/to/spine_mar/test/no_artifact
+    random_flip: False
+    metrics_step: .inf
+deep_lesion:
+  train:
+    batch_size: 8
+    dataset_type: deep_lesion
+  test:
+    batch_size: 20
+    dataset_type: deep_lesion
+    dataset_dir: /path/to/deep_lesion/test
+    partial_holdout: 0.0
+    random_mask: False
+    random_flip: False
+    load_mask: True
+nature_image:
+  train:
+    batch_size: 2
+    input_ch: 3
+    input_nc: 3
+    dataset_type: nature_image
+    a_dir: /path/to/nature_image/train/artifact
+    b_dir: data/nature_image/train/no_artifact
+  test:
+    batch_size: 8
+    input_ch: 3
+    input_nc: 3
+    dataset_type: nature_image
+    a_dir: /path/to/nature_image/test/artifact
+    b_dir: /path/to/nature_image/test/no_artifact
+    random_flip: False
+    crop_type: center
+    metrics_step: .inf

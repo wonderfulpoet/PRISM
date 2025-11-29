@@ -1,0 +1,27 @@
+deep_lesion:
+  raw_dir: /path/to/deep_lesion/raw
+  dataset_dir: /path/to/deep_lesion
+  data_list: /path/to/deep_lesion/image_list.txt
+  mar_dir: /path/to/deep_lesion/deep_lesion/metal_masks
+  scale: 0.5
+  CTpara:
+    imPixNum: 256
+    angSize: 0.1
+    angNum: 320
+    SOD: 1075
+    imPixScale: '512 / 256 * 0.03'
+    train_indices: (0:3999) * 10 + 1
+    test_indices: (0:199) * 10 + 45000
+    test_mask_indices: [1,2,20,30,36,43,63,64,98,100]
+    train_mask_indices: setdiff(1:100, [1,2,20,30,36,43,63,64,98,100])
+    sinogram_size_x: 320
+    sinogram_size_y: 197
+    window: '[-175, 275] / 1000 * 0.192 + 0.192'
+spineweb:
+  raw_dir: /path/to/spineweb/spine-1 
+  dataset_dir: /path/to/spineweb
+  max_hu: [2000, 2500] 
+  connected_area: 400 
+  image_size: 256 
+  thumbnail_size: 96 
+  num_tests: 200

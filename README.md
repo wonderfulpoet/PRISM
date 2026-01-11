@@ -1,8 +1,7 @@
 # :dizzy:Unsupervised CT Metal Artifact Reduction via Consistent Artifact Modeling 
 ***
 
-This code is a **pytorch** implementation of our paper "**PRISM: Physics-Regularized Inference 
-for Safe Metal-artifact Reduction**".
+This code is a **pytorch** implementation of our paper "**Unsupervised CT Metal Artifact Reduction via Consistent Artifact Modeling**".
 
 ***
 

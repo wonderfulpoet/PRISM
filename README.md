@@ -8,7 +8,7 @@ This code is a **pytorch** implementation of our paper "**Unsupervised CT Metal 
 ## :computer:Proposed method
 ***
 ![framework](imgs/model1.png)
-The proposed PRISM Generator.
+The proposed CAM-Net Generator.
 
 ![framework](imgs/model2new.png)
 

@@ -1,18 +1,18 @@
 import os
 import os.path as path
 import argparse
-from PRISM.utils import get_config, update_config, save_config, get_last_checkpoint, add_post, Logger
-from PRISM.datasets import get_dataset_train
-from PRISM.models import PRISMTrain
+from CAM.utils import get_config, update_config, save_config, get_last_checkpoint, add_post, Logger
+from CAM.datasets import get_dataset_train
+from CAM.models import CAMTrain
 from torch.utils.data import DataLoader
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train PRISM network")
+    parser = argparse.ArgumentParser(description="Train CAM network")
     parser.add_argument("run_name", help="name of the run")
-    parser.add_argument("--default_config", default="config/PRISM.yaml", help="default configs")
-    parser.add_argument("--run_config", default="runs/PRISM.yaml", help="run configs")
+    parser.add_argument("--default_config", default="config/CAM.yaml", help="default configs")
+    parser.add_argument("--run_config", default="runs/CAM.yaml", help="run configs")
     args = parser.parse_args()
 
     opts = get_config(args.default_config)
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         checkpoint = path.join(run_dir, "net_{}".format(start_epoch))
         if type(start_epoch) is not int: start_epoch = 0
 
-    model = PRISMTrain(opts['learn'], opts['loss'], **opts['model'])
+    model = CAMTrain(opts['learn'], opts['loss'], **opts['model'])
     if opts['use_gpu']: model.cuda()
 
     logger = Logger(run_dir, start_epoch, args.run_name)

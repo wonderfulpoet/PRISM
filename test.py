@@ -1,13 +1,13 @@
-from PRISM.utils import Logger
-from PRISM.tester import Tester
-from PRISM.models.PRISM import PRISMTest
+from CAM.utils import Logger
+from CAM.tester import Tester
+from CAM.models.CAM import CAMTest
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 
 
-class PRISMTester(Tester):
+class CAMTester(Tester):
     def __init__(self, **params):
-        super(PRISMTester, self).__init__(**params)
+        super(CAMTester, self).__init__(**params)
     
     def get_image(self, data):
         data_opts = self.opts.dataset
@@ -66,7 +66,7 @@ class PRISMTester(Tester):
         model.evaluate(*data)     
 
 if __name__ == "__main__":
-    tester = PRISMTester(
-        name="PRISM", model_class=PRISMTest,
-        description="Test PRISM network")
+    tester = CAMTester(
+        name="CAM", model_class=CAMTest,
+        description="Test CAM network")
     tester.run()

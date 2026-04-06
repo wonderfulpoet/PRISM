@@ -1,26 +1,20 @@
-# 💫
-
-# Unsupervised CT Metal Artifact Reduction via Consistent Artifact Modeling
-
----
+# :dizzy:Unsupervised CT Metal Artifact Reduction via Consistent Artifact Modeling 
+***
 
 This code is a **pytorch** implementation of our paper "**Unsupervised CT Metal Artifact Reduction via Consistent Artifact Modeling**".
 
-## 💻Proposed method
+***
 
----
-
+## :computer:Proposed method
+***
 ![framework](imgs/model1.png)
 The proposed CAM Generator.
 
 ![framework](imgs/model2new.png)
 
----
-
-## 🚩Comparison
-
----
-
+***
+## :triangular_flag_on_post:Comparison
+***
 #### - PSNR/SSIM comparison of different MAR methods on the Synthetic DeepLesion dataset.
 
 ![qualitative](imgs/psnr.png)
@@ -35,72 +29,70 @@ The proposed CAM Generator.
 
 #### - Residual error maps for large-metal cases.
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/4.png)
 
 #### - Residual error maps for medium-metal cases.
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/5.png)
 
 #### - Residual error maps for small-metal cases.
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/6.png)
 
 #### - Quantitative distribution on synthetic data.
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/violin.png)
 
 #### - Clinical SpineWeb results (window 1500/500 HU).
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/7.png)
 
 #### - Clinical pelvic CT results (window 450/50 HU).
 
-![qualitative](imgs/rmse.png)
+![qualitative](imgs/8.png)
 
----
+***
+## :book:Ablation study
 
-## 📖Ablation study
+#### - Quantitative evaluation of the Image Fusion Strategy on the Synthetic DeepLesion dataset with different numbers of input slices
 
-#### - Qualitative results on Analysis of the High-order Interaction modules.
+![qualitative](imgs/9.png)
 
-![Qualitative_Ablation](images/Qualitative_Ablation.png)
+#### - Quantitative evaluation of the Loss Function Components on the Synthetic DeepLesion dataset with different configurations
 
-FSIM and GCIM represent individual interaction modules, respectively. The notation GCIM->FSIM indicates a serial structure with the order reversed.
+![qualitative](imgs/10.png)
 
----
-
-## ⚙️Pre-requisties
+***
+## :gear:Pre-requisties
 
 <ul>
 <li> Linux
-<li> python> =3.8
+<li> python == 3.8
 <li> Cuda 11.8
 </ul>
 
----
 
-## 📂Datasets
+***
+## :open_file_folder:Datasets
 
-The M3FD dataset with mask can be downloaded at https://drive.google.com/drive/folders/1J15Kt8hiwDoB24FEMPKiofn_4dD0tpFz?usp=drive_link.
+The DeepLesion dataset can be downloaded at https://nihcc.app.box.com/v/DeepLesion and the preprocessing method can be found at https://github.com/hongwang01/InDuDoNet.
 
----
-
+***
 ## 🫳Install dependencies
 
     pip install -r requirements.txt
 
----
-
+***
 ## 🐎Training
 
-if you want to train on your own datasets,you can use vsm.m to generate mask for training. Please run the following command to train:
+    python train.py deep_lesion
 
-    python train.py -opt train.yml
-
----
-
+***
 ## 🔍Test
 
-You can run the follow command for testing:
+    python test.py deep_lesion
 
-    python test.py -opt test.yml
+
+
+
+

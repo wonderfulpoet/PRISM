@@ -1,0 +1,92 @@
+experiment_name: CAM
+seed: 42
+output_dir: outputs
+use_amp: false
+num_epochs: 50
+device: cuda
+
+cudnn:
+  benchmark: true
+  deterministic: false
+
+resume:
+  auto_resume: false
+
+checkpoint:
+  save_epoch_ckpt: true
+
+tensorboard:
+  enabled: true
+  log_dir: tensorboard
+
+train:
+  batch_size: 8
+  num_workers: 4
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  persistent_workers: true
+  log_interval: 20
+
+val:
+  batch_size: 1
+  num_workers: 2
+  shuffle: false
+  pin_memory: true
+  drop_last: false
+  persistent_workers: true
+  best_metric: psnr
+  higher_is_better: true
+
+test:
+  batch_size: 1
+  num_workers: 2
+  pin_memory: true
+
+optimizer:
+  lr: 1.0e-4
+  beta1: 0.5
+  beta2: 0.999
+  weight_decay: 1.0e-5
+
+scheduler:
+  step_size: 100000
+  gamma: 0.5
+
+loss_weights:
+  ll: 0.0
+  hh: 10.0
+  lh: 0.0
+  lhl: 10.0
+  hlh: 20.0
+  noise: 10.0
+  gl: 2.0
+  gh: 2.0
+
+model:
+  generator:
+    input_nc: 6
+    output_nc: 3
+    ngf: 64
+    n_blocks: 5
+  discriminator:
+    input_nc: 1
+    ndf: 64
+    n_layers: 2
+    norm_layer: instance
+
+dataset:
+  name: deep_lesion
+  train:
+    txt_file: /xxx/share_1290796/hazelhwang/mardataset/train/train_640geo_dir.txt
+    data_root: /xxx/share_1290796/hazelhwang/mardataset/train/train_640geo
+    samples_per_case: 90
+  val:
+    txt_file: /xxx/share_1290796/hazelhwang/mardataset/test/test_640geo_dir.txt
+    data_root: /xxx/share_1290796/hazelhwang/mardataset/test/test_640geo
+    samples_per_case: 10
+  test:
+    txt_file: /xxx/share_1290796/hazelhwang/mardataset/test/test_640geo_dir.txt
+    data_root: /xxx/share_1290796/hazelhwang/mardataset/test/test_640geo
+    samples_per_case: 10
+  intensity_range: [0.0, 1.0]
